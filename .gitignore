@@ -29,3 +29,5 @@ pokemons-*.tar
 *.db
 *.db-*
 
+# Language Server
+.elixir_ls/
