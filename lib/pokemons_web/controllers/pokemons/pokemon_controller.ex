@@ -1,4 +1,6 @@
 defmodule PokemonsWeb.Controllers.Pokemons.PokemonController do
+  @moduledoc false
+
   use PokemonsWeb, :controller
 
   alias Pokemons.Pokedex
