@@ -48,6 +48,8 @@ mix deps.get
 mix phx.server
 ```
 
+All those instructions are enough to create a valid working project. If you read closely the repository, you will see that some naming and structures have changed to match my approach of Elixir development (`application.ex` at root, one supervisor per folder/context, module naming matching folder structure,...).
+
 ## Use the API
 
 Navigate to `http://localhost:4000/`, you will display an error page displaying all available route in the API.
