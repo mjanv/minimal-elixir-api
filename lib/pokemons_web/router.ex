@@ -7,5 +7,7 @@ defmodule PokemonsWeb.Router do
 
   scope "/api", PokemonsWeb do
     pipe_through :api
+
+    resources "/pokemons", PokemonController, except: [:new, :edit, :update]
   end
 end

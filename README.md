@@ -16,7 +16,29 @@ mix phx.server
 ```
 
 ```
-mix phx.gen.json Accounts User users name:string age:integer
+mix phx.gen.json Pokedex Pokemon pokemons number:integer name:string type:string
+```
+
+```
+Add the resource to your :api scope in lib/pokemons_web/router.ex:
+
+    resources "/pokemons", PokemonController, except: [:new, :edit]
+```
+
+```
+mix ecto.migrate
+```
+
+```
+curl -i http://localhost:4000/api/pokemons
+```
+
+```
+curl -iX POST http://localhost:4000/api/pokemons -H 'Content-Type: application/json' -d '{"pokemon": {"number": 25, "name": "Pikachu", "type": "electric"}}'
+
+curl -iX POST http://localhost:4000/api/pokemons -H 'Content-Type: application/json' -d '{"pokemon": {"number": 1, "name": "Bulbizarre", "type": "plant"}}'
+
+curl -iX DELETE http://localhost:4000/api/pokemons/2
 ```
 
 ## Ressources
@@ -25,3 +47,4 @@ All the content written in this repository have been created using those ressour
 
 - [Phoenix documentation, JSON and APIs](https://hexdocs.pm/phoenix/json_and_apis.html)
 - [Phoenix documentation, mix phx.gen.json](https://hexdocs.pm/phoenix/Mix.Tasks.Phx.Gen.Json.html)
+- [Phoenix documentation, Routing - Ressources](https://hexdocs.pm/phoenix/routing.html#resources)
