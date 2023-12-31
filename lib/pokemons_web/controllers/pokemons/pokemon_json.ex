@@ -1,4 +1,4 @@
-defmodule PokemonsWeb.PokemonJSON do
+defmodule PokemonsWeb.Controllers.Pokemons.PokemonJSON do
   @moduledoc false
 
   alias Pokemons.Pokedex.Pokemon

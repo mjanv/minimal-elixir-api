@@ -1,4 +1,6 @@
 defmodule PokemonsWeb.Router do
+  @moduledoc false
+
   use PokemonsWeb, :router
 
   pipeline :api do
@@ -8,6 +10,6 @@ defmodule PokemonsWeb.Router do
   scope "/api", PokemonsWeb do
     pipe_through :api
 
-    resources "/pokemons", PokemonController, except: [:new, :edit, :update]
+    resources "/pokemons", Controllers.Pokemons.PokemonController, except: [:new, :edit, :update]
   end
 end

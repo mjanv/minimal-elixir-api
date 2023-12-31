@@ -1,16 +1,17 @@
-defmodule PokemonsWeb.FallbackController do
+defmodule PokemonsWeb.Controllers.FallbackController do
   @moduledoc """
   Translates controller action results into valid `Plug.Conn` responses.
 
   See `Phoenix.Controller.action_fallback/1` for more details.
   """
+
   use PokemonsWeb, :controller
 
   # This clause handles errors returned by Ecto's insert/update/delete.
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
     conn
     |> put_status(:unprocessable_entity)
-    |> put_view(json: PokemonsWeb.ChangesetJSON)
+    |> put_view(json: PokemonsWeb.Controllers.ChangesetJSON)
     |> render(:error, changeset: changeset)
   end
 
@@ -18,7 +19,7 @@ defmodule PokemonsWeb.FallbackController do
   def call(conn, {:error, :not_found}) do
     conn
     |> put_status(:not_found)
-    |> put_view(html: PokemonsWeb.ErrorHTML, json: PokemonsWeb.ErrorJSON)
+    |> put_view(html: PokemonsWeb.ErrorHTML, json: PokemonsWeb.Controllers.ErrorJSON)
     |> render(:"404")
   end
 end

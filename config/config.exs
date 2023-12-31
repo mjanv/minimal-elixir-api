@@ -8,7 +8,7 @@ config :pokemons, PokemonsWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Phoenix.Endpoint.Cowboy2Adapter,
   render_errors: [
-    formats: [json: PokemonsWeb.ErrorJSON],
+    formats: [json: PokemonsWeb.Controllers.ErrorJSON],
     layout: false
   ],
   pubsub_server: Pokemons.PubSub,

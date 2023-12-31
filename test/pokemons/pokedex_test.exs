@@ -1,4 +1,6 @@
 defmodule Pokemons.PokedexTest do
+  @moduledoc false
+
   use Pokemons.DataCase
 
   alias Pokemons.Pokedex

@@ -1,4 +1,4 @@
-defmodule PokemonsWeb.ChangesetJSON do
+defmodule PokemonsWeb.Controllers.ChangesetJSON do
   @doc """
   Renders changeset errors.
   """

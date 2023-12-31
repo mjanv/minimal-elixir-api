@@ -1,10 +1,10 @@
-defmodule PokemonsWeb.PokemonController do
+defmodule PokemonsWeb.Controllers.Pokemons.PokemonController do
   use PokemonsWeb, :controller
 
   alias Pokemons.Pokedex
   alias Pokemons.Pokedex.Pokemon
 
-  action_fallback PokemonsWeb.FallbackController
+  action_fallback PokemonsWeb.Controllers.FallbackController
 
   def index(conn, _params) do
     pokemons = Pokedex.list_pokemons()
