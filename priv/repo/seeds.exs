@@ -1,11 +1,9 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     Pokemons.Repo.insert!(%Pokemons.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+starter_pack = [
+  %{number: 1, name: "Bulbizarre", type: "Plante"},
+  %{number: 4, name: "Salamèche", type: "Feu"},
+  %{number: 7, name: "Carapuce", type: "Eau"}
+]
+
+for pokemon <- starter_pack do
+  Pokemons.Pokedex.create_pokemon(pokemon)
+end

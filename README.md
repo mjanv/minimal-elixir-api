@@ -77,9 +77,6 @@ New pokemons can be added using POST requests:
 curl -iX POST http://localhost:4000/api/pokemons \
     -H 'Content-Type: application/json' \
     -d '{"pokemon": {"number": 25, "name": "Pikachu", "type": "Électrik"}}'
-curl -iX POST http://localhost:4000/api/pokemons \
-    -H 'Content-Type: application/json' \
-    -d '{"pokemon": {"number": 1, "name": "Bulbizarre", "type": "Plante"}}'
 ```
 
 Pokemons can be deleted using DELETE requests:
@@ -90,6 +87,16 @@ curl -iX DELETE http://localhost:4000/api/pokemons/2
 ```
 
 ## Deployment
+
+You can deploy by either using an [Erlang release](#deploy-using-an-erlang-release) or by using a [Docker container](#deploy-using-a-dockerfile). Pick your sword. Both deployments use the `prod` configuration.
+
+For both deployments, create an environnment file `.env` with this content:
+
+```bash
+SECRET_KEY_BASE=h3x6k7JMU/zNgsBZKtDyj9KHLrmDp76bbvp6cFdAWFod/BkJjUd2bLYaVlRRYnVi DATABASE_PATH=data/pokemons.db
+```
+
+The secret key base can be regenerated using `mix phx.gen.secret`.
 
 ### Deploy using an Erlang release
 
@@ -102,16 +109,16 @@ mix phx.gen.release --docker
 Build the release binary using,
 
 ```bash
-mix release
+source .env
+MIX_ENV=prod mix release
 ```
 
 And you can start the server with,
 
 ```bash
-PHX_SERVER=true _build/dev/rel/pokemons/bin/pokemons start
+source .env
+PHX_SERVER=true _build/prod/rel/pokemons/bin/pokemons start
 ```
-
-The deployment uses the `dev` configuration.
 
 ### Deploy using a Dockerfile
 

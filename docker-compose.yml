@@ -4,9 +4,8 @@ services:
     build: .
     ports:
       - "4000:4000"
-    environment:
-      DATABASE_PATH: /app/data/pokemons.db
-      SECRET_KEY_BASE: h3x6k7JMU/zNgsBZKtDyj9KHLrmDp76bbvp6cFdAWFod/BkJjUd2bLYaVlRRYnVi
+    env_file:
+      - .env
     volumes:
       - ./data:/app/data/
 

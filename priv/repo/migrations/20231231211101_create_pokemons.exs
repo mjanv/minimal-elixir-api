@@ -1,4 +1,6 @@
 defmodule Pokemons.Repo.Migrations.CreatePokemons do
+  @moduledoc false
+
   use Ecto.Migration
 
   def change do
@@ -9,5 +11,7 @@ defmodule Pokemons.Repo.Migrations.CreatePokemons do
 
       timestamps(type: :utc_datetime)
     end
+
+    create index(:pokemons, [:number])
   end
 end

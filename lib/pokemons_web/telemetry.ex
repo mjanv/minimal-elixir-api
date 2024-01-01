@@ -12,8 +12,7 @@ defmodule PokemonsWeb.Telemetry do
   @impl true
   def init(_arg) do
     children = [
-      {:telemetry_poller, measurements: periodic_measurements(), period: 10_000},
-      # Add reporters as children of your supervision tree.
+      {:telemetry_poller, measurements: periodic_measurements(), period: 10_000}
       # {Telemetry.Metrics.ConsoleReporter, metrics: metrics()}
     ]
 
