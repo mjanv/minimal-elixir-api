@@ -76,10 +76,10 @@ New pokemons can be added using POST requests:
 ```bash
 curl -iX POST http://localhost:4000/api/pokemons \
     -H 'Content-Type: application/json' \
-    -d '{"pokemon": {"number": 25, "name": "Pikachu", "type": "electric"}}'
+    -d '{"pokemon": {"number": 25, "name": "Pikachu", "type": "Électrik"}}'
 curl -iX POST http://localhost:4000/api/pokemons \
     -H 'Content-Type: application/json' \
-    -d '{"pokemon": {"number": 1, "name": "Bulbizarre", "type": "plant"}}'
+    -d '{"pokemon": {"number": 1, "name": "Bulbizarre", "type": "Plante"}}'
 ```
 
 Pokemons can be deleted using DELETE requests:

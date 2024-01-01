@@ -6,7 +6,6 @@ defmodule PokemonsWeb do
   This can be used in your application as:
 
       use PokemonsWeb, :controller
-      use PokemonsWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused

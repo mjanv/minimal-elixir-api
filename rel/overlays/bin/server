@@ -2,5 +2,4 @@
 
 cd -P -- "$(dirname -- "$0")"
 
-./pokemons eval Pokemons.Repo.Release.migrate
 PHX_SERVER=true exec ./pokemons start

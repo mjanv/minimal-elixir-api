@@ -1,4 +1,0 @@
-#!/bin/sh
-
-cd -P -- "$(dirname -- "$0")"
-exec ./pokemons eval Pokemons.Repo.Release.migrate
