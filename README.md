@@ -131,6 +131,8 @@ The deployment uses the `prod` configuration.
 
 ## Development
 
+If you want to extend this project, you can ensure everything remains good by using the following tools:
+
 ```bash
 mix format # Format the code
 mix credo --strict # Static code analysis
