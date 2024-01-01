@@ -31,3 +31,7 @@ pokemons-*.tar
 
 # Language Server
 .elixir_ls/
+
+# Environment variable files
+.env*
+

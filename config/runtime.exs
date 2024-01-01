@@ -16,8 +16,6 @@ if config_env() == :prod do
     database: database_path,
     pool_size: String.to_integer(System.get_env("POOL_SIZE") || "5")
 
-  config :pokemons, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
-
   config :pokemons, PokemonsWeb.Endpoint,
     url: [
       host: System.get_env("PHX_HOST") || "example.com",

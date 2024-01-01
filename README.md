@@ -64,7 +64,7 @@ All those instructions are enough to create a valid working project. If you read
 
 Navigate to `http://localhost:4000/`, you will display an error page displaying all available route in the API.
 
-All pokemons can be listed using GET requests:
+All pokemons, or a specific pokemon, can be listed using GET requests:
 
 ```bash
 curl -i http://localhost:4000/api/pokemons
@@ -83,7 +83,6 @@ Pokemons can be deleted using DELETE requests:
 
 ```bash
 curl -iX DELETE http://localhost:4000/api/pokemons/1
-curl -iX DELETE http://localhost:4000/api/pokemons/2
 ```
 
 ## Deployment
@@ -93,7 +92,8 @@ You can deploy by either using an [Erlang release](#deploy-using-an-erlang-relea
 For both deployments, create an environnment file `.env` with this content:
 
 ```bash
-SECRET_KEY_BASE=h3x6k7JMU/zNgsBZKtDyj9KHLrmDp76bbvp6cFdAWFod/BkJjUd2bLYaVlRRYnVi DATABASE_PATH=data/pokemons.db
+SECRET_KEY_BASE=h3x6k7JMU/zNgsBZKtDyj9KHLrmDp76bbvp6cFdAWFod/BkJjUd2bLYaVlRRYnVi
+DATABASE_PATH=data/pokemons.db
 ```
 
 The secret key base can be regenerated using `mix phx.gen.secret`.

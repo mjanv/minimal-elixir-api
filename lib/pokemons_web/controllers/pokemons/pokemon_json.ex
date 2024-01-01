@@ -7,7 +7,7 @@ defmodule PokemonsWeb.Controllers.Pokemons.PokemonJSON do
   Renders a list of pokemons.
   """
   def index(%{pokemons: pokemons}) do
-    %{data: for(pokemon <- pokemons, do: data(pokemon))}
+    %{data: Enum.map(pokemons, &data/1)}
   end
 
   @doc """

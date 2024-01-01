@@ -5,23 +5,43 @@ defmodule PokemonsWeb.Telemetry do
 
   import Telemetry.Metrics
 
-  def start_link(arg) do
-    Supervisor.start_link(__MODULE__, arg, name: __MODULE__)
+  def start_link(args) do
+    Supervisor.start_link(__MODULE__, args, name: __MODULE__)
   end
 
   @impl true
-  def init(_arg) do
+  def init(_args) do
     children = [
-      {:telemetry_poller, measurements: periodic_measurements(), period: 10_000}
-      # {Telemetry.Metrics.ConsoleReporter, metrics: metrics()}
+      {:telemetry_poller, measurements: application_measurements(), period: 60_000}
+      # {Telemetry.Metrics.ConsoleReporter, metrics: application_metrics()}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)
   end
 
-  def metrics do
+  def application_measurements do
     [
-      # Phoenix Metrics
+      {Pokemons, :count_pokemons, []}
+    ]
+  end
+
+  def application_metrics do
+    [
+      last_value("pokemons.pokedex.total", description: "The total number of pokemons")
+    ]
+  end
+
+  def vm_metrics do
+    [
+      summary("vm.memory.total", unit: {:byte, :kilobyte}),
+      summary("vm.total_run_queue_lengths.total"),
+      summary("vm.total_run_queue_lengths.cpu"),
+      summary("vm.total_run_queue_lengths.io")
+    ]
+  end
+
+  def phoenix_metrics do
+    [
       summary("phoenix.endpoint.start.system_time",
         unit: {:native, :millisecond}
       ),
@@ -49,9 +69,12 @@ defmodule PokemonsWeb.Telemetry do
       summary("phoenix.channel_handled_in.duration",
         tags: [:event],
         unit: {:native, :millisecond}
-      ),
+      )
+    ]
+  end
 
-      # Database Metrics
+  def database_metrics do
+    [
       summary("pokemons.repo.query.total_time",
         unit: {:native, :millisecond},
         description: "The sum of the other measurements"
@@ -72,21 +95,7 @@ defmodule PokemonsWeb.Telemetry do
         unit: {:native, :millisecond},
         description:
           "The time the connection spent waiting before being checked out for the query"
-      ),
-
-      # VM Metrics
-      summary("vm.memory.total", unit: {:byte, :kilobyte}),
-      summary("vm.total_run_queue_lengths.total"),
-      summary("vm.total_run_queue_lengths.cpu"),
-      summary("vm.total_run_queue_lengths.io")
-    ]
-  end
-
-  defp periodic_measurements do
-    [
-      # A module, function and arguments to be invoked periodically.
-      # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {Pokemons, :count_pokemons, []}
+      )
     ]
   end
 end

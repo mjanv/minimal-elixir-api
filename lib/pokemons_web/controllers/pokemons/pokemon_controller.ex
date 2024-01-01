@@ -13,8 +13,8 @@ defmodule PokemonsWeb.Controllers.Pokemons.PokemonController do
     render(conn, :index, pokemons: pokemons)
   end
 
-  def create(conn, %{"pokemon" => pokemon_params}) do
-    with {:ok, %Pokemon{} = pokemon} <- Pokedex.create_pokemon(pokemon_params) do
+  def create(conn, %{"pokemon" => params}) do
+    with {:ok, %Pokemon{} = pokemon} <- Pokedex.create_pokemon(params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", ~p"/api/pokemons/#{pokemon}")
@@ -27,10 +27,10 @@ defmodule PokemonsWeb.Controllers.Pokemons.PokemonController do
     render(conn, :show, pokemon: pokemon)
   end
 
-  def update(conn, %{"id" => id, "pokemon" => pokemon_params}) do
+  def update(conn, %{"id" => id, "pokemon" => params}) do
     pokemon = Pokedex.get_pokemon!(id)
 
-    with {:ok, %Pokemon{} = pokemon} <- Pokedex.update_pokemon(pokemon, pokemon_params) do
+    with {:ok, %Pokemon{} = pokemon} <- Pokedex.update_pokemon(pokemon, params) do
       render(conn, :show, pokemon: pokemon)
     end
   end

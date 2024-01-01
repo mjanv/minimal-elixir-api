@@ -11,7 +11,6 @@ defmodule PokemonsWeb.Supervisor do
   def init(_args) do
     children = [
       PokemonsWeb.Telemetry,
-      {DNSCluster, query: Application.get_env(:pokemons, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Pokemons.PubSub},
       PokemonsWeb.Endpoint
     ]

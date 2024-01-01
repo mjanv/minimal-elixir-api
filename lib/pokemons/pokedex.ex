@@ -22,6 +22,19 @@ defmodule Pokemons.Pokedex do
   end
 
   @doc """
+  Returns the number of pokemons.
+
+  ## Examples
+
+      iex> count_pokemons()
+      151
+
+  """
+  def count_pokemons do
+    from(p in Pokemon, select: count(p.id)) |> Repo.one()
+  end
+
+  @doc """
   Gets a single pokemon.
 
   Raises `Ecto.NoResultsError` if the Pokemon does not exist.
