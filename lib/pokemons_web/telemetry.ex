@@ -2,6 +2,7 @@ defmodule PokemonsWeb.Telemetry do
   @moduledoc false
 
   use Supervisor
+
   import Telemetry.Metrics
 
   def start_link(arg) do
@@ -11,9 +12,9 @@ defmodule PokemonsWeb.Telemetry do
   @impl true
   def init(_arg) do
     children = [
-      {:telemetry_poller, measurements: periodic_measurements(), period: 10_000}
+      {:telemetry_poller, measurements: periodic_measurements(), period: 10_000},
       # Add reporters as children of your supervision tree.
-      # {Telemetry.Metrics.ConsoleReporter, metrics: metrics()}
+      {Telemetry.Metrics.ConsoleReporter, metrics: metrics()}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)
@@ -86,7 +87,7 @@ defmodule PokemonsWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {PokemonsWeb, :count_users, []}
+      # {Pokemons, :count_pokemons, []}
     ]
   end
 end

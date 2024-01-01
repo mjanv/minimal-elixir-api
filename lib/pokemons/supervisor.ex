@@ -10,10 +10,12 @@ defmodule Pokemons.Supervisor do
   @impl true
   def init(_args) do
     children = [
-      PokemonsWeb.Telemetry,
-      {DNSCluster, query: Application.get_env(:pokemons, :dns_cluster_query) || :ignore},
-      {Phoenix.PubSub, name: Pokemons.PubSub},
-      PokemonsWeb.Endpoint
+      Pokemons.Repo,
+      {
+        Ecto.Migrator,
+        repos: Application.fetch_env!(:pokemons, :ecto_repos),
+        skip: System.get_env("RELEASE_NAME") != nil
+      }
     ]
 
     Supervisor.init(children, strategy: :one_for_one)

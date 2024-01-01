@@ -9,7 +9,7 @@ config :pokemons, Pokemons.Repo,
 config :pokemons, PokemonsWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
-  code_reloader: true,
+  code_reloader: false,
   debug_errors: true,
   secret_key_base: "90tX6+JFjTqAfGAsvdD8Ep46p4jUodlh6yVuQAn8mRIghi+Xifkl57Ai26v2eWhd",
   watchers: []

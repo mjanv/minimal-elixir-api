@@ -4,6 +4,14 @@ This repository holds a minimal Elixir application deploying a simple JSON API u
 
 The API is capable to create and return basic informations about Pokemons (yes, the [Pokemons](https://www.pokemon.com/us/pokedex)). You can put this in production, at your risk, but it will bring zero value to your product.
 
+## Architecture
+
+Overall architecture of the entire application is:
+
+![Architecture](docs/architecture.png)
+
+The schema can be edited using [excalidraw](https://excalidraw.com/).
+
 ## Application setup
 
 The application has been setup using the following steps. 

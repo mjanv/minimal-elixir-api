@@ -16,11 +16,6 @@ defmodule PokemonsWeb.Endpoint do
     gzip: false,
     only: PokemonsWeb.static_paths()
 
-  if code_reloading? do
-    plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :pokemons
-  end
-
   plug Plug.RequestId
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
 
