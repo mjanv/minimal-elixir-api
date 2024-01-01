@@ -4,9 +4,9 @@ defmodule Pokemons.Pokedex do
   """
 
   import Ecto.Query, warn: false
-  alias Pokemons.Repo
 
   alias Pokemons.Pokedex.Pokemon
+  alias Pokemons.Repo
 
   @doc """
   Returns the list of pokemons.

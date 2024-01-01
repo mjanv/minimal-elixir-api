@@ -1,12 +1,14 @@
 # Minimal JSON API for Elixir
 
-This repository is a minimal Elixir appplication deploying a simple JSON API written in Elixir using the [Phoenix framework](https://hexdocs.pm/phoenix). The repository is compatible with Phoenix versions higher than `1.7`. 
+This repository holds a minimal Elixir application deploying a simple JSON API using the [Phoenix framework](https://hexdocs.pm/phoenix). The repository is compatible with Phoenix versions higher than `1.7`. 
 
-The API is capable to add and return basic informations about Pokemons. You can put this in production, at your risk, but it will bring zero value to your product.
+The API is capable to create and return basic informations about Pokemons (yes, the [Pokemons](https://www.pokemon.com/us/pokedex)). You can put this in production, at your risk, but it will bring zero value to your product.
 
 ## Application setup
 
-The application has been setup using the following steps. First, you can create the project using `mix phx.new` by removing all options related to HTML views, JS, mails,... The database is setup using SQLite 3.
+The application has been setup using the following steps. 
+
+1. ou can create the project using `mix phx.new` by removing all options related to HTML views, JS, mails,... The database is setup using SQLite 3.
 
 ```bash
 mkdir minimal-elixir-api
@@ -17,11 +19,11 @@ mix phx.new . --app pokemons --module Pokemons --database sqlite3 --no-assets --
 From there, the server can already be started using:
 
 ```bash
-mix deps.get
+mix setup
 mix phx.server
 ```
 
-You can add a `Pokedex` context defining what is a `Pokemon` (plural `pokemons`), with `number`, `name` and `type` attributes. Using this command, you will create the context (Ecto schema, Ecto migration), the controller and the JSON view.
+2. You can add a `Pokedex` context defining what is a `Pokemon` (plural `pokemons`), with `number`, `name` and `type` attributes. As you are using the `phx.gen.json` command, you will create the context (Ecto schema, Ecto migration), the controller and the JSON view at once.
 
 ```bash
 mix phx.gen.json Pokedex Pokemon pokemons number:integer name:string type:string
@@ -44,7 +46,7 @@ mix ecto.migrate
 the server can be (re)started using:
 
 ```bash
-mix deps.get
+mix setup
 mix phx.server
 ```
 
@@ -54,18 +56,22 @@ All those instructions are enough to create a valid working project. If you read
 
 Navigate to `http://localhost:4000/`, you will display an error page displaying all available route in the API.
 
-All pokemons can be listed using a GET request:
+All pokemons can be listed using GET requests:
 
 ```bash
 curl -i http://localhost:4000/api/pokemons
+curl -i http://localhost:4000/api/pokemons/1
 ```
 
 New pokemons can be added using POST requests:
 
 ```bash
-curl -iX POST http://localhost:4000/api/pokemons -H 'Content-Type: application/json' -d '{"pokemon": {"number": 25, "name": "Pikachu", "type": "electric"}}'
-
-curl -iX POST http://localhost:4000/api/pokemons -H 'Content-Type: application/json' -d '{"pokemon": {"number": 1, "name": "Bulbizarre", "type": "plant"}}'
+curl -iX POST http://localhost:4000/api/pokemons \
+    -H 'Content-Type: application/json' \
+    -d '{"pokemon": {"number": 25, "name": "Pikachu", "type": "electric"}}'
+curl -iX POST http://localhost:4000/api/pokemons \
+    -H 'Content-Type: application/json' \
+    -d '{"pokemon": {"number": 1, "name": "Bulbizarre", "type": "plant"}}'
 ```
 
 Pokemons can be deleted using DELETE requests:
@@ -74,6 +80,46 @@ Pokemons can be deleted using DELETE requests:
 curl -iX DELETE http://localhost:4000/api/pokemons/1
 curl -iX DELETE http://localhost:4000/api/pokemons/2
 ```
+
+## Deployment
+
+### Deploy using an Erlang release
+
+You can create the minimal `rel/` folder using,
+
+```bash
+mix phx.gen.release --docker
+```
+
+Build the release binary using,
+
+```bash
+mix release
+```
+
+And you can start the server with,
+
+```bash
+PHX_SERVER=true _build/dev/rel/pokemons/bin/pokemons start
+```
+
+The deployment uses the `dev` configuration.
+
+### Deploy using a Dockerfile
+
+You can create the minimal `Dockerfile` and `rel/` folder using,
+
+```bash
+mix phx.gen.release --docker
+```
+
+A `docker-compose.yml` is available to run the application using your preferred way to package anything. Just,
+
+```bash
+docker compose up
+```
+
+The deployment uses the `prod` configuration.
 
 ## Development
 

@@ -45,6 +45,7 @@ defmodule Pokemons.MixProject do
       setup: ["deps.get", "ecto.setup"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
+      quality: ["format", "credo --strict"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
     ]
   end
