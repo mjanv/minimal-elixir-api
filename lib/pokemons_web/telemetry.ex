@@ -12,7 +12,8 @@ defmodule PokemonsWeb.Telemetry do
   @impl true
   def init(_args) do
     children = [
-      {:telemetry_poller, measurements: application_measurements(), period: 60_000}
+      {:telemetry_poller,
+       measurements: application_measurements(), period: 60_000, init_delay: 5_000}
       # {Telemetry.Metrics.ConsoleReporter, metrics: application_metrics()}
     ]
 

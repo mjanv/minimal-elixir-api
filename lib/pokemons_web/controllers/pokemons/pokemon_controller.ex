@@ -6,10 +6,13 @@ defmodule PokemonsWeb.Controllers.Pokemons.PokemonController do
   alias Pokemons.Pokedex
   alias Pokemons.Pokedex.Pokemon
 
+  alias PokemonsWeb.Channels.Pokemons.PokedexChannel
+
   action_fallback PokemonsWeb.Controllers.FallbackController
 
   def index(conn, _params) do
     pokemons = Pokedex.list_pokemons()
+    PokedexChannel.broadcast(:prout, %{count: length(pokemons)})
     render(conn, :index, pokemons: pokemons)
   end
 

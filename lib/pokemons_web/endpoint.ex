@@ -3,13 +3,6 @@ defmodule PokemonsWeb.Endpoint do
 
   use Phoenix.Endpoint, otp_app: :pokemons
 
-  @session_options [
-    store: :cookie,
-    key: "_pokemons_key",
-    signing_salt: "MktTHTkZ",
-    same_site: "Lax"
-  ]
-
   plug Plug.Static,
     at: "/",
     from: :pokemons,
@@ -26,6 +19,16 @@ defmodule PokemonsWeb.Endpoint do
 
   plug Plug.MethodOverride
   plug Plug.Head
-  plug Plug.Session, @session_options
+
+  plug Plug.Session,
+    store: :cookie,
+    key: "_pokemons_key",
+    signing_salt: "MktTHTkZ",
+    same_site: "Lax"
+
   plug PokemonsWeb.Router
+
+  socket "/socket", PokemonsWeb.Channels.Socket,
+    websocket: true,
+    longpoll: false
 end
