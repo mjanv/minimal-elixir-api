@@ -47,7 +47,7 @@ s = Socket("ws://localhost:4000/socket/websocket")
 s.connect()
 
 channel = s.set_channel("pokedex")
-channel.join().on("*", print)
+channel.join().on("count", print)
 
 s.listen()
 ```
