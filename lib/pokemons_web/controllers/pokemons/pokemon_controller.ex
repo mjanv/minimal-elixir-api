@@ -12,7 +12,7 @@ defmodule PokemonsWeb.Controllers.Pokemons.PokemonController do
 
   def index(conn, _params) do
     pokemons = Pokedex.list_pokemons()
-    PokedexChannel.broadcast(:prout, %{count: length(pokemons)})
+    PokedexChannel.broadcast(:count, %{count: length(pokemons)})
     render(conn, :index, pokemons: pokemons)
   end
 

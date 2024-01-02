@@ -52,4 +52,4 @@ channel.join().on("*", print)
 s.listen()
 ```
 
-Any event pushed to the client will be displayed in the console
+Any event pushed to the client will be displayed in the console. Right now, a `count` event is published when the `api/pokemons` endpoint is called using a GET request.
