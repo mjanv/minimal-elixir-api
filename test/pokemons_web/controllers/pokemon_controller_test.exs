@@ -1,17 +1,9 @@
-defmodule PokemonsWeb.Controllers.PokemonControllerTest do
+defmodule PokemonsWeb.Controllers.PokemonsTest do
   @moduledoc false
 
   use PokemonsWeb.ConnCase
 
   import Pokemons.PokedexFixtures
-
-  @create_attrs %{
-    name: "some name",
-    type: "some type",
-    number: 42
-  }
-
-  @invalid_attrs %{name: nil, type: nil, number: nil}
 
   setup %{conn: conn} do
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
@@ -20,28 +12,37 @@ defmodule PokemonsWeb.Controllers.PokemonControllerTest do
   describe "index" do
     test "lists all pokemons", %{conn: conn} do
       conn = get(conn, ~p"/api/pokemons")
-      assert json_response(conn, 200)["data"] == []
+
+      response = json_response(conn, 200)
+      assert response["data"] == []
     end
   end
 
   describe "create pokemon" do
     test "renders pokemon when data is valid", %{conn: conn} do
-      conn = post(conn, ~p"/api/pokemons", pokemon: @create_attrs)
-      assert %{"id" => id} = json_response(conn, 201)["data"]
+      attrs = %{name: "some name", type: "some type", number: 42}
 
+      conn = post(conn, ~p"/api/pokemons", pokemon: attrs)
+      %{"id" => id} = json_response(conn, 201)["data"]
       conn = get(conn, ~p"/api/pokemons/#{id}")
 
-      assert %{
-               "id" => ^id,
+      response = json_response(conn, 200)
+
+      assert response["data"] == %{
+               "id" => id,
                "name" => "some name",
                "number" => 42,
                "type" => "some type"
-             } = json_response(conn, 200)["data"]
+             }
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, ~p"/api/pokemons", pokemon: @invalid_attrs)
-      assert json_response(conn, 422)["errors"] != %{}
+      attrs = %{name: nil, type: nil, number: nil}
+
+      conn = post(conn, ~p"/api/pokemons", pokemon: attrs)
+
+      response = json_response(conn, 422)
+      assert response["errors"] != %{}
     end
   end
 
