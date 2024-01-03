@@ -13,15 +13,13 @@ You can put this in production, at your risk, but it will bring zero value to yo
 
 ## Architecture
 
-Overall architecture of the entire application is:
+Overall architecture (editable with [excalidraw](https://excalidraw.com/)) of the entire application is:
 
 ![Architecture](docs/architecture.png)
 
-The schema can be edited using [excalidraw](https://excalidraw.com/).
-
 ## Guides
 
-- [**Scaffolding**](docs/scaffolding.md): How to setup easily the JSON and Websockets API ?
-- [**API Usage**](docs/api_usage.md): How to connect to the JSON or Websockets API ?
-- [**Deployment**](docs/deployment.md): How to deploy through Erlang releases and Dockerfiles ?
-- [**Ressources**](docs/ressources.md): What ressources have been used to write this repository ?
+- [**Scaffolding**](docs/scaffolding.md) - How to setup easily the JSON and Websockets API ?
+- [**API Usage**](docs/api_usage.md) - How to connect to the JSON or Websockets API ?
+- [**Deployment**](docs/deployment.md) - How to deploy through Erlang releases and Dockerfiles ?
+- [**Ressources**](docs/ressources.md) - What ressources have been used to write this repository ?
