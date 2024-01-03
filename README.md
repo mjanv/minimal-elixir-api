@@ -21,7 +21,7 @@ The schema can be edited using [excalidraw](https://excalidraw.com/).
 
 ## Guides
 
-- **Scaffolding**: How to setup easily the JSON and Websockets API ? Follow the steps in [docs/scaffolding.md](docs/scaffolding.md).
-- **API Usage**: How to connect to the JSON or Websockets API ? See this in [docs/api_usage.md](docs/api_usage.md).
-- **Deployment**: How to deploy through Erlang releases and Dockerfiles ? The answer is in [docs/deployment.md](docs/deployment.md).
-- **Ressources**: All ressources used to create this repository are listed in [docs/ressources.md](docs/ressources.md)
+- [**Scaffolding**](docs/scaffolding.md): How to setup easily the JSON and Websockets API ?
+- [**API Usage**](docs/api_usage.md): How to connect to the JSON or Websockets API ?
+- [**Deployment**](docs/deployment.md): How to deploy through Erlang releases and Dockerfiles ?
+- [**Ressources**](docs/ressources.md): What ressources have been used to write this repository ?
